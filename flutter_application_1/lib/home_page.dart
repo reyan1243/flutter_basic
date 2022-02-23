@@ -1,0 +1,22 @@
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    int num = 40;
+    String str = "flutter";
+    double val = 42;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Rand App"),
+        titleSpacing: 150,
+      ),
+      drawer: Drawer(),
+      body: Center(
+        child: Container(
+          child: Text("you will took $val days to learn $str"),
+        ),
+      ),
+    );
+  }
+}
