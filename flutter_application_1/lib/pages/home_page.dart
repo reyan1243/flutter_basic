@@ -14,7 +14,9 @@ class HomePage extends StatelessWidget {
       drawer: Drawer(),
       body: Center(
         child: Container(
-          child: Text("you will took $val days to learn $str"),
+          child: Text("you will took $val days to learn $str",
+          textScaleFactor: 1.5,
+          ),
         ),
       ),
     );
