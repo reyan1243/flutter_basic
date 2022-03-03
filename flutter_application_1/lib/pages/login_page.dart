@@ -9,17 +9,30 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String name = "";
   bool changeButton = false;
+  final _formkey = GlobalKey<FormState>();
+
+  movetohome(BuildContext context) async {
+    if (_formkey.currentState!.validate()) {
+      setState(() {
+        changeButton = true;
+      });
+      await Future.delayed(Duration(seconds: 1));
+      await Navigator.pushNamed(context, MyRoutes.homeRoute);
+      setState(() {
+        changeButton = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    
     return Material(
       color: Colors.white,
       child: SingleChildScrollView(
         child: Column(
           children: [
             Image.asset(
-              "assets/images/login_img.png",
+              "assets/images/hey.png",
               fit: BoxFit.cover,
               // height: 800,
             ),
@@ -41,72 +54,81 @@ class _LoginPageState extends State<LoginPage> {
                 vertical: 22,
                 horizontal: 42,
               ),
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                        hintText: "Enter username", labelText: "Username"),
-                    onChanged: (str) {
-                      name = str;
-                      setState(() {});
-                    },
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: "Enter password",
-                      labelText: "Password",
+              child: Form(
+                key: _formkey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Enter username", labelText: "Username"),
+                      validator: (value) {
+                        if (value != null && value.isEmpty) {
+                          return "username canot be empty";
+                        }
+                        return null;
+                      },
+                      onChanged: (str) {
+                        name = str;
+                        setState(() {});
+                      },
                     ),
-                  ),
-                  SizedBox(
-                    height: 35,
-                  ),
-                  InkWell(
-                    onTap: () async {
-                      setState(() {
-                        changeButton = true;
-                      });
-                      await Future.delayed(Duration(seconds: 1));
-                      Navigator.pushNamed(context, MyRoutes.homeRoute);
-                    },
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds:750 ),
-                      height: changeButton ? 50 : 40,
-                      width: changeButton ? 50 : 150,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        borderRadius:
-                            BorderRadius.circular(changeButton ? 50 : 8),
+                    TextFormField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: "Enter password",
+                        labelText: "Password",
                       ),
-                      child: changeButton
-                          ? Icon(
-                              Icons.done,
-                              color: Colors.white,
-                            )
-                          : Text(
-                              "Login",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
+                      validator: (value) {
+                        if (value != null && value.isEmpty) {
+                          return "password canot be empty";
+                        } else if (value!.length < 6) {
+                          return "enter atleast 6 digits password";
+                        } else if (value != "khan1243") {
+                          return "Password is wrong";
+                        }
+
+                        return null;
+                      },
                     ),
-                  )
-                  // ElevatedButton(
-                  //   onPressed: () {
-                  //     Navigator.pushNamed(context, MyRoutes.homeRoute);
-                  //   },
-                  //   child: Text("Login"),
-                  //   style: TextButton.styleFrom(minimumSize: Size(130, 40)),
-                  // )
-                ],
+                    SizedBox(
+                      height: 35,
+                    ),
+                    Material(
+                      color: Colors.deepPurple,
+                      borderRadius:
+                          BorderRadius.circular(changeButton ? 50 : 8),
+                      child: InkWell(
+                        splashColor: Color.fromARGB(110, 69, 83, 211),
+                        onTap: () => movetohome(context),
+                        child: AnimatedContainer(
+                          duration: Duration(milliseconds: 750),
+                          height: changeButton ? 50 : 40,
+                          width: changeButton ? 50 : 150,
+                          alignment: Alignment.center,
+                          child: changeButton
+                              ? Icon(
+                                  Icons.done,
+                                  color: Colors.white,
+                                )
+                              : Text(
+                                  "Login",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ],
         ),
       ),
     );
+  
   }
 }
