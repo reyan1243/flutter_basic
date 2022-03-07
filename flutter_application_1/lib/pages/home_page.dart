@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/drawer.dart';
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,7 @@ class HomePage extends StatelessWidget {
         title: Text("Rand App"),
         titleSpacing: 150,
       ),
-      drawer: Drawer(),
+      drawer: MyDrawer(),
       body: Center(
         child: Container(
           child: Text("you will took $val days to learn $str",

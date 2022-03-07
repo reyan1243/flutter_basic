@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
                     TextFormField(
-                      obscureText: true,
+                      obscureText: true, //hidden password digits 
                       decoration: InputDecoration(
                         hintText: "Enter password",
                         labelText: "Password",
@@ -83,9 +83,10 @@ class _LoginPageState extends State<LoginPage> {
                           return "password canot be empty";
                         } else if (value!.length < 6) {
                           return "enter atleast 6 digits password";
-                        } else if (value != "khan1243") {
-                          return "Password is wrong";
-                        }
+                        } 
+                        // else if (value != "khan1243") {
+                        //   return "Password is wrong";
+                        // }
 
                         return null;
                       },
@@ -129,6 +130,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  
   }
 }
