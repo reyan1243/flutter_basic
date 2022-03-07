@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
     double val = 42;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Rand App"),
+        title: Text("Catalog App"),
         titleSpacing: 150,
       ),
       drawer: MyDrawer(),

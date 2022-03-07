@@ -79,7 +79,7 @@ class MyDrawer extends StatelessWidget {
                 "QR Code scanner",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 19,
+                  fontSize: 18,
                 ),
               ),
             ),
