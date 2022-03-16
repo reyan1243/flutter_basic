@@ -8,14 +8,14 @@ class MyTheme {
       fontFamily: GoogleFonts.lato().fontFamily,
       appBarTheme: AppBarTheme(
         color: Colors.white,
-        iconTheme: IconThemeData(color: Color.fromARGB(255, 49, 49, 49)),
+        iconTheme: IconThemeData(color: Color.fromARGB(255, 32, 1, 46)),
         elevation: 0.0,
         toolbarTextStyle: Theme.of(context).textTheme.bodyText2,
         titleTextStyle: Theme.of(context).textTheme.headline5,
       ));
 
   static ThemeData darkTheme(BuildContext context) => ThemeData(
-      brightness: Brightness.dark,
+        brightness: Brightness.dark,
       );
-      // appBarTheme: AppBarTheme(color: Colors.black));
+  // appBarTheme: AppBarTheme(color: Colors.black));
 }
